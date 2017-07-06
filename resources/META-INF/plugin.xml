@@ -1,0 +1,39 @@
+<idea-plugin>
+    <id>com.djk.yyy.kotterknife</id>
+    <name>KotterKnifePlugin(kotlin)</name>
+    <version>1.0</version>
+    <vendor email="1440418246@qq.com" url="http://www.yourcompany.com">YourCompany</vendor>
+
+    <description><![CDATA[
+      kotterknife plugin for kotlin
+    ]]></description>
+
+    <change-notes><![CDATA[
+   first commit
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="145.0"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+    <depends>org.jetbrains.kotlin</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <action class="com.djk.yyy.kotterknife.InjectAction" id="InjectionAction"
+                text="KotterKnifePlugin(kotlin)"
+                description="Plugin for generating Kotterknife injections form selected XMLs in kotlin code">
+            <add-to-group group-id="EditorPopupMenu"/>
+        </action>
+
+    </actions>
+
+</idea-plugin>
