@@ -44,6 +44,9 @@ public class InjectWriter extends WriteCommandAction.Simple {
         for (int i = mElements.size() - 1; i >= 0; i--) {
             Element mElement = mElements.get(i);
 
+            if (!mElement.used){
+                continue;
+            }
             StringBuilder builder = new StringBuilder();
 
             builder.append("val ");

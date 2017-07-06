@@ -17,10 +17,7 @@ import com.intellij.psi.*;
 import com.intellij.psi.util.PsiUtilBase;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.kotlin.idea.internal.Location;
-import org.jetbrains.kotlin.psi.KtClass;
-import org.jetbrains.kotlin.psi.KtFile;
-import org.jetbrains.kotlin.psi.KtProperty;
-import org.jetbrains.kotlin.psi.KtTypeConstraintList;
+import org.jetbrains.kotlin.psi.*;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -45,7 +42,6 @@ public class InjectAction extends BaseGenerateAction implements IConfirmListener
 
     @Override
     protected boolean isValidForClass(PsiClass targetClass) {
-        System.out.println("super.isValidForClass(targetClass) = " + super.isValidForClass(targetClass));
 //        return super.isValidForClass(targetClass);
         return true;
     }
@@ -53,7 +49,6 @@ public class InjectAction extends BaseGenerateAction implements IConfirmListener
 
     @Override
     protected boolean isValidForFile(@NotNull Project project, @NotNull Editor editor, @NotNull PsiFile file) {
-        System.out.println("super.isValidForFile(project, editor, file) = " + super.isValidForFile(project, editor, file));
 //        return super.isValidForFile(project, editor, file);
         return true;
     }
@@ -125,13 +120,16 @@ public class InjectAction extends BaseGenerateAction implements IConfirmListener
         for (KtProperty property : properties) {
 
             String text = property.getText();
-            System.out.println("text = " + text);
 
 //            for (String annotation : annotations) {
 //                id = Utils.getInjectionID(butterKnife, annotation.trim());
 //                if (!Utils.isEmptyString(id)) {
 //                }
 //            }
+            if (text.contains("by bindOptionalView") || text.contains("by bindView")) {
+                text = text.substring(text.indexOf("(") + 1, text.indexOf(")")).trim();
+                System.out.println("text = " + text);
+            }
             ids.add(text);
         }
 
