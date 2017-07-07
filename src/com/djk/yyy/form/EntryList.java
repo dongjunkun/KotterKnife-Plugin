@@ -47,32 +47,6 @@ public class EntryList extends JPanel {
         }
     };
 
-    private OnCheckBoxStateChangedListener allOptionalCheckListener = new OnCheckBoxStateChangedListener() {
-        @Override
-        public void changeState(boolean checked) {
-            for (final Entry entry : mEntries) {
-                entry.setListener(null);
-                entry.getmIsOptional().setSelected(checked);
-                entry.setListener(singleOptionalCheckListener);
-            }
-        }
-    };
-
-    private OnCheckBoxStateChangedListener singleOptionalCheckListener = new OnCheckBoxStateChangedListener() {
-        @Override
-        public void changeState(boolean checked) {
-            boolean result = true;
-            for (Entry entry : mEntries) {
-                result &= entry.getmIsOptional().isSelected();
-            }
-
-            mEntryHeader.setAllListener(null);
-            mEntryHeader.getmIsOptional().setSelected(result);
-            mEntryHeader.setAllListener(allOptionalCheckListener);
-        }
-    };
-
-
     private OnCheckBoxStateChangedListener singleCheckListener = new OnCheckBoxStateChangedListener() {
         @Override
         public void changeState(boolean checked) {
@@ -86,6 +60,34 @@ public class EntryList extends JPanel {
             mEntryHeader.setAllListener(allCheckListener);
         }
     };
+
+    private OnCheckBoxStateChangedListener allOptionalCheckListener = new OnCheckBoxStateChangedListener() {
+        @Override
+        public void changeState(boolean checked) {
+            for (final Entry entry : mEntries) {
+                entry.setOptionalListener(null);
+                entry.getmIsOptional().setSelected(checked);
+                entry.setOptionalListener(singleOptionalCheckListener);
+            }
+        }
+    };
+
+    private OnCheckBoxStateChangedListener singleOptionalCheckListener = new OnCheckBoxStateChangedListener() {
+        @Override
+        public void changeState(boolean checked) {
+            boolean result = true;
+            for (Entry entry : mEntries) {
+                result &= entry.getmIsOptional().isSelected();
+            }
+
+            mEntryHeader.setmAllOptionalListener(null);
+            mEntryHeader.getmIsOptional().setSelected(result);
+            mEntryHeader.setmAllOptionalListener(allOptionalCheckListener);
+        }
+    };
+
+
+
 
     public EntryList(Project project, Editor editor, ArrayList<Element> elements, ArrayList<String> ids, boolean createHolder, IConfirmListener confirmListener, ICancelListener cancelListener) {
         mProject = project;
@@ -121,9 +123,11 @@ public class EntryList extends JPanel {
 
         int cnt = 0;
         boolean selectAllCheck = true;
+        boolean selectAllOptionalCheck = true;
         for (Element element : mElements) {
             Entry entry = new Entry(this, element, mGeneratedIDs);
             entry.setListener(singleCheckListener);
+            entry.setOptionalListener(singleOptionalCheckListener);
 
             if (cnt > 0) {
                 injectionsPanel.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -134,9 +138,11 @@ public class EntryList extends JPanel {
             mEntries.add(entry);
 
             selectAllCheck &= entry.getCheck().isSelected();
+            selectAllOptionalCheck &= entry.getmIsOptional().isSelected();
         }
         mEntryHeader.getAllCheck().setSelected(selectAllCheck);
         mEntryHeader.setAllListener(allCheckListener);
+        mEntryHeader.getmIsOptional().setSelected(selectAllOptionalCheck);
         mEntryHeader.setmAllOptionalListener(allOptionalCheckListener);
         injectionsPanel.add(Box.createVerticalGlue());
         injectionsPanel.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -184,7 +190,7 @@ public class EntryList extends JPanel {
         holderPanel.add(mHolderCheck);
         holderPanel.add(mHolderLabel);
         holderPanel.add(Box.createHorizontalGlue());
-        add(holderPanel, BorderLayout.PAGE_END);
+//        add(holderPanel, BorderLayout.PAGE_END);
 
         msplitOnclickMethodsCheck = new JCheckBox();
         msplitOnclickMethodsCheck.setPreferredSize(new Dimension(32, 26));
@@ -199,7 +205,7 @@ public class EntryList extends JPanel {
         splitOnclickMethodsPanel.add(msplitOnclickMethodsCheck);
         splitOnclickMethodsPanel.add(independentOnclickMethodsLabel);
         splitOnclickMethodsPanel.add(Box.createHorizontalGlue());
-        add(splitOnclickMethodsPanel, BorderLayout.PAGE_END);
+//        add(splitOnclickMethodsPanel, BorderLayout.PAGE_END);
 
         mCancel = new JButton();
         mCancel.setAction(new CancelAction());

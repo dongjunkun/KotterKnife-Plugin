@@ -119,10 +119,12 @@ public class Entry extends JPanel {
             mType.setEnabled(true);
             mID.setEnabled(true);
             mName.setEnabled(true);
+            mIsOptional.setEnabled(true);
         } else {
             mType.setEnabled(false);
             mID.setEnabled(false);
             mName.setEnabled(false);
+            mIsOptional.setEnabled(false);
         }
 
         if (mListener != null) {
@@ -130,7 +132,7 @@ public class Entry extends JPanel {
         }
 
         if (mOptionalListener != null){
-            mOptionalListener.changeState(mCheck.isSelected());
+            mOptionalListener.changeState(mIsOptional.isSelected());
         }
     }
 
