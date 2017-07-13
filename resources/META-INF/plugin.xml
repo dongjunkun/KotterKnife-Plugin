@@ -2,7 +2,7 @@
     <id>com.djk.yyy.kotterknife</id>
     <name>KotterKnifePlugin(kotlin)</name>
     <version>1.0</version>
-    <vendor email="1440418246@qq.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <vendor email="1440418246@qq.com" url="https://github.com/dongjunkun">Dongjunkun</vendor>
 
     <description><![CDATA[
       kotterknife plugin for kotlin
