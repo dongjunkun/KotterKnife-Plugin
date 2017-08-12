@@ -72,13 +72,17 @@ public class InjectWriter extends WriteCommandAction.Simple {
             } else if (Definitions.paths.containsKey(element.name)) { // listed class
                 set.add(Definitions.paths.get(element.name));
             } else { // android.widget
-                set.add("android.widget."+element.name);
+                set.add("android.widget." + element.name);
             }
             builder.append(element.getFullID());
             builder.append(")");
 
-            if (mKtClass.getBody() != null) {
-                mKtClass.addAfter(mFactory.createProperty(String.valueOf(builder)), mKtClass.getBody().getFirstChild());
+            if (mKtClass.getBody() != null && mKtClass.getBody().getFirstChild() != null) {
+                try {
+                    mKtClass.getBody().addAfter(mFactory.createProperty(String.valueOf(builder)), mKtClass.getBody().getFirstChild());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
 
