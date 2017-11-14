@@ -55,7 +55,7 @@ public class InjectWriter extends WriteCommandAction.Simple {
             }
             StringBuilder builder = new StringBuilder();
 
-            builder.append("val ");
+            builder.append(" private val ");
             builder.append(element.fieldName);
             builder.append(": ");
             builder.append(element.name);

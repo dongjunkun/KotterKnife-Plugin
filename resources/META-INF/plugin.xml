@@ -25,6 +25,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <applicationConfigurable instance="com.djk.yyy.Settings" />
     </extensions>
 
     <actions>

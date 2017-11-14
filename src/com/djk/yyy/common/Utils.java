@@ -1,6 +1,8 @@
 package com.djk.yyy.common;
 
+import com.djk.yyy.Settings;
 import com.djk.yyy.model.Element;
+import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.module.Module;
@@ -15,6 +17,8 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiIdentifier;
 import com.intellij.psi.XmlRecursiveElementVisitor;
+import com.intellij.psi.codeStyle.CodeStyleSettings;
+import com.intellij.psi.codeStyle.CodeStyleSettingsManager;
 import com.intellij.psi.search.EverythingGlobalScope;
 import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
@@ -323,6 +327,21 @@ public class Utils {
                 .setFadeoutTime(7500)
                 .createBalloon()
                 .show(RelativePoint.getCenterOf(statusBar.getComponent()), Balloon.Position.atRight);
+    }
+
+    /**
+     * Load field name prefix from code style
+     *
+     * @return
+     */
+    public static String getPrefix() {
+        if (PropertiesComponent.getInstance().isValueSet(Settings.PREFIX)) {
+            return PropertiesComponent.getInstance().getValue(Settings.PREFIX);
+        } else {
+            CodeStyleSettingsManager manager = CodeStyleSettingsManager.getInstance();
+            CodeStyleSettings settings = manager.getCurrentSettings();
+            return settings.FIELD_NAME_PREFIX;
+        }
     }
 
     public static int getInjectCount(ArrayList<Element> elements) {

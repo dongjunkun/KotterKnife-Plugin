@@ -9,14 +9,14 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library" exported="" scope="PROVIDED">
+    <orderEntry type="module-library" scope="PROVIDED">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/kotlin-plugin.jar!/" />
+          <root url="jar://G:/android-studio-ide-171.4402976-windows/android-studio/plugins/Kotlin/lib/kotlin-plugin.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/Desktop/kotlin-plugin.jar!/" />
+          <root url="jar://G:/android-studio-ide-171.4402976-windows/android-studio/plugins/Kotlin/lib/kotlin-plugin.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
