@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.djk.yyy.kotterknife</id>
     <name>KotterKnifePlugin(kotlin)</name>
-    <version>1.1</version>
+    <version>1.2</version>
     <vendor email="1440418246@qq.com" url="https://github.com/dongjunkun">Dongjunkun</vendor>
 
     <description><![CDATA[
